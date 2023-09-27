@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "378232602948",
+    "project_id": "flutter-project-5e0b0",
+    "storage_bucket": "flutter-project-5e0b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378232602948:android:80cfec3a52c1d36dbd5711",
+        "android_client_info": {
+          "package_name": "com.giljuandiego.push_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjgcwBGBz_POawwa6BvU50HqQBG9hayx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
