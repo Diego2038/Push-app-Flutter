@@ -3,6 +3,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:push_app/presentation/blocs/notifications/notifications_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: (){
-              // TODO: Solicitar permisos de notificaciones
+              // request notification permission
               context.read<NotificationsBloc>().requestPermission();
             }, 
             icon: const Icon(Icons.settings)
@@ -34,10 +35,29 @@ class _HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final notifications = context.watch<NotificationsBloc>().state.notifications;
+
     return ListView.builder(
-      itemCount: 0,
+      itemCount: notifications.length,
       itemBuilder: (context, index) {
-        return const ListTile();
+        final notification = notifications[index];
+        return ListTile(
+          title: Text(notification.title ),
+          subtitle: Text(notification.body),
+          leading: SizedBox(height: 400, child: 
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network( 
+                fit: BoxFit.fill,
+                notification.imageUrl ?? 'https://i.kym-cdn.com/entries/icons/facebook/000/017/786/tumblr_mjkfjrIFyZ1s8r2c1o1_400.jpg'
+              ),
+            )
+          ,),
+          onTap: () {
+            context.push('/push-details/${ notification.messageId}');
+          },
+        );
       },);
   }
 }
